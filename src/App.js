@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useReducer } from 'react';
+import RenderCounter, { RenderCounterMemo } from './components/RenderCounter';
 import './App.css';
 
+const incrementReducer = (state) => state + 1;
+
 function App() {
+  const [counter, increaseCounter] = useReducer(incrementReducer, 0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Demo App for Various Topics</h1>
+      <div style={{ marginBottom: '0.5rem' }}>
+        State Variable in App: {counter}
+        <button onClick={increaseCounter}>Increase</button>
+      </div>
+      <RenderCounter />
+      <RenderCounterMemo/>
+      <RenderCounterMemo test={Math.floor(counter/3)} key={Math.floor(counter/12)} />
     </div>
   );
 }
