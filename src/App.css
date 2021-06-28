@@ -1,39 +1,39 @@
 body {
   font-size: 14px;
   color: #fefefb;
-  background-color: #222a2a;
+  background-color: #363E3E
 }
 h1 {
   margin: 0 0 0.4rem;
 }
-
 .App {
   margin: 0.5rem 2rem;
 }
-
+div.container {
+  background-color: #222a2a;
+  padding: 0.5rem 1rem 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px 2px black;
+}
 
 div.renderCounter {
   position: relative;
   display: flex;
   flex-flow: row wrap;
   border-radius: 4px;
-  border: 1px solid black;
 }
-
 div.renderCounter div {
   font-size: 14px;
   font-weight: bold;
-  padding: 1rem;
 }
-
 div.renderCounter div:first-child {
   border-right: 2px solid black;
+  padding: 1rem;
+  width: 3rem;
 }
-
 div.renderCounter div.colorBlock {
-  padding: 0; margin: 0;
-  border: 1px solid block;
-  width: 2rem;
+  padding: 1rem; margin: 0;
   box-sizing: border-box;
 }
 
@@ -48,7 +48,36 @@ button {
   font-weight: bold;
   font-size: 16px;
 }
-
 button:hover {
   background-color: #750D86;
+}
+button.off {
+  color: #ddd;
+  background-color: #da7070;
+}
+
+div.tabmenu {
+  padding-left: 1rem;
+  margin-bottom: 0;
+}
+div.tabmenu button {
+  margin: 0 0.5rem 0 0;
+  border-radius: 0;
+}
+div.tabmenu button.active {
+  background-color: #357D36;
+}
+div.tabmenu button.active:hover {
+  background-color: #155D16;
+}
+
+@keyframes spinning {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+.spin {
+  animation-name: spinning;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }

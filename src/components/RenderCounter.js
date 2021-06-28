@@ -1,4 +1,10 @@
 import React, { useRef, useLayoutEffect } from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  // Render without color blocks
+  simple: PropTypes.bool,
+}
 
 const colors = [
   '#2e91e5',
@@ -6,7 +12,7 @@ const colors = [
   '#1ca71c',
   '#fb0d0d',
   '#da16ff',
-  '#363E3E',
+  '#267E5E',
   '#b68100',
   '#750d86',
   '#eb663b',
@@ -30,20 +36,19 @@ export default function RenderCounter(props) {
   });
 
   return (
-    <div className='renderCounter'
-      style={{
-        backgroundColor: color || undefined,
-        
-      }}
-    >
-      <div>{count.current + 1}</div>
+    <div className="renderCounter">
+      <div style={{ backgroundColor: color }}>{count.current + 1}</div>
       {!simple && colors.map((blockColor, i) => (
         <div key={blockColor} className='colorBlock'
-          style={{ backgroundColor: blockColor, border: i === index ? '2px solid black' : 'none' }}
-        />
+          style={{ backgroundColor: blockColor, border: i === index ? '2px solid black' : undefined }}
+        ></div>
       ))}
     </div>
   );
 }
 
+RenderCounter.propTypes = propTypes;
+
+// Memoize component to only re-render if props change
+// Functional component equivalent of class React.SimpleComponent
 export const RenderCounterMemo = React.memo(RenderCounter);
