@@ -4,12 +4,11 @@ import RenderingMemo from './components/RenderingMemo';
 import EffectInLine from './components/EffectInLine';
 import EffectMemo from './components/EffectMemo';
 import ObjectEquality from './components/ObjectEquality';
-import RainingEmoji from './components/RainingEmoji';
+import RainingEmoji from './components/RainingEmoji/RainingEmoji';
 import './App.css';
 
 // Assumes state is number, returns increment of it
 const incrementReducer = (state) => state + 1;
-const toggleReducer = (state) => !state;
 
 // Tabs / Pages
 const tabOptions = [
@@ -23,7 +22,6 @@ const tabOptions = [
 function App() {
   const [currentTab, setCurrentTab] = useState(tabOptions[0].id);
   const [counter, increaseCounter] = useReducer(incrementReducer, 0);
-  const [raining, toggleRaining] = useReducer(toggleReducer, false);
 
   return (
     <div className="App">
@@ -53,16 +51,11 @@ function App() {
       {currentTab === 'objectEquality' && (
         <ObjectEquality />
       )}
-      <RainingEmoji disabled={!raining} />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0, right: 0,
-          fontSize: '8px',
-          cursor: 'pointer',
-        }}
-        onClick={toggleRaining}
-      >😋</div>
+
+
+
+      {/* Just for fun.. */}
+      <RainingEmoji count={50}/>
     </div>
   );
 }

@@ -1,0 +1,8 @@
+@keyframes spinning {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+@keyframes falling {
+  from { top: 0vh }
+  to { top: 100vh }
+}

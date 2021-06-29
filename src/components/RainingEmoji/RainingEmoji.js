@@ -1,16 +1,22 @@
 import React, { useReducer, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import RandomEmoji from './RandomEmoji';
+import './RainingEmoji.css';
 
 const propTypes = {
-  disabled: PropTypes.bool,
+  /** If True, its raining */
+  raining: PropTypes.bool,
+  /** Max number of drops */
   count: PropTypes.number,
+  /** If true, hide the toggle button. Will need to control via raining. */
+  hideButton: PropTypes.bool,
 };
 
 const defaultProps = {
   count: 30,
 };
 
+const toggleReducer = (state) => !state;
 const incrementReducer = (state) => state + 1;
 const rainingReducer = (state, ops) => {
   const nextState = [];
@@ -43,10 +49,12 @@ const rainingReducer = (state, ops) => {
 export default function RainingEmoji(props) {
   const [frame, nextFrame] = useReducer(incrementReducer, 0);
   const [rain, makeItRain] = useReducer(rainingReducer, []);
+  const [raining, toggleRaining] = useReducer(toggleReducer, false);
   const timer = useRef(null);
+  const disabled = !props.raining && !raining;
 
   useEffect(() => {
-    if (props.disabled) {
+    if (disabled) {
       if (timer.current) { clearTimeout(timer.current); }
       makeItRain(false);
       return undefined;
@@ -63,7 +71,7 @@ export default function RainingEmoji(props) {
       clearTimeout(timerId);
     }
 
-  }, [frame, props.disabled, props.count]);
+  }, [frame, disabled, props.count]);
 
   return (
     <div
@@ -77,6 +85,17 @@ export default function RainingEmoji(props) {
       {rain.map((drop) => (
         drop.component
       ))}
+      {!props.hideButton && (
+        <div
+          style={{
+            position: 'fixed',
+            bottom: '0vh', right: '0vw',
+            fontSize: '8px',
+            cursor: 'pointer',
+          }}
+          onClick={toggleRaining}
+        >😋</div>
+      )}
     </div>
   );
 }
