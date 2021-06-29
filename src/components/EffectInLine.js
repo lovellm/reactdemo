@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import StateVariableButton from './StateVariableButton';
 import RenderCounter from './RenderCounter';
 import SlowComponent from './SlowComponent';
 
@@ -69,10 +68,19 @@ export default function EffectInLine(props) {
   return (
     <div>
       <div className="container">
-        <StateVariableButton {...props} />
         <p>
           This page demonstrates the rendering difference of deriving data
           using a useEffect vs directly doing it in-line.
+        </p>
+        <p>
+          For example, suppose you receive data in props and you need to sort that data before using it.
+          Should you should sort it directly, or sort it within a useEffect and then save it to state?
+          In most cases, it probably does not matter, but if your component, or child components,
+          are slow to render, it might.
+        </p>
+        <p>
+          This page is simulating such a scenario by making an array derived from the app state counter.
+          It also provides options to simulate a slow rendering component.
         </p>
         <div style={{ marginBottom: '1rem' }}>
           Which Option to Use?

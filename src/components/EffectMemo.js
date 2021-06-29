@@ -2,7 +2,6 @@ import React, {
   useEffect, useState, useMemo, useReducer,
 } from 'react';
 import PropTypes from 'prop-types';
-import StateVariableButton from './StateVariableButton';
 import RenderCounter from './RenderCounter';
 import { fakeDataProcess, fakeDataProcessAsync } from './fakeDataProcess';
 
@@ -22,7 +21,7 @@ const options = [
 ];
 
 const speeds = [
-  100, 500, 1000, 2000,
+  0, 100, 500, 1000, 2000,
 ];
 
 function AsDirect(props) {
@@ -77,7 +76,7 @@ function AsEffectAsync(props) {
   );
 }
 
-export default function EffectMemo(props) {
+export default function EffectMemo() {
   const [currentOption, setCurrentOption] = useState(options[0].id);
   const [currentSpeed, setCurrentSpeed] = useState(speeds[0]);
   const [calcAgain, toggleCalcAgain] = useReducer(toggleReducer, false);
@@ -85,10 +84,29 @@ export default function EffectMemo(props) {
   return (
     <div>
       <div className="container">
-        <StateVariableButton {...props} />
         <p>
           This page demonstrates running a slow computation in a
-          useEffect vs a useMemo vs every time
+          useEffect vs a useMemo vs every time.
+          You can choose how slow the data processing is and then observe the difference in user experience.
+        </p>
+          <ul>
+            <li>
+              Every Time: Does the data processing on every render
+            </li>
+            <li>
+              useEffect: Performs the data processing in a useEffect and saves to state
+            </li>
+            <li>
+              useMemo: Performs the data processing in a useMemo
+            </li>
+            <li>
+              Async useEffect: Converts the data processing to an async function and runs it in a useEffect
+            </li>
+          </ul>
+        <p>
+          The "data processing" in this example just makes a random number.
+          Use the Calculate Again button to change deps and run it again for options
+          other than Every Time.
         </p>
         <div style={{ marginBottom: '1rem'}}>
           <button onClick={toggleCalcAgain}>Calculate Again</button>

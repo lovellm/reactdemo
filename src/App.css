@@ -6,9 +6,25 @@ body {
 h1 {
   margin: 0 0 0.4rem;
 }
+code, div.code {
+  background-color: #363e3e;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 0.2rem 0.5rem;
+  color: #ffd0d0;
+  white-space: pre-line
+}
+a {
+  color: #fc0080;
+  text-decoration: none;
+}
+a:hover {
+  color: #750D86;
+}
+
 .App {
   margin: 0.5rem 2rem;
 }
+
 div.container {
   background-color: #222a2a;
   padding: 0.5rem 1rem 1rem;
@@ -75,9 +91,19 @@ div.tabmenu button.active:hover {
   from { transform: rotate(0deg) }
   to { transform: rotate(360deg) }
 }
+@keyframes falling {
+  from { top: 0vh }
+  to { top: 100vh }
+}
 .spin {
   animation-name: spinning;
   animation-duration: 3s;
   animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.fall {
+  animation-name: falling;
+  animation-duration: 6s;
+  animation-iteration-count: 1;
   animation-timing-function: linear;
 }
