@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import RenderCounter, { RenderCounterMemo } from './RenderCounter';
 
 const propTypes = {
-  counter:         PropTypes.number.isRequired,
-  increaseCounter: PropTypes.func.isRequired,
+  counter: PropTypes.number.isRequired,
 };
 
 export default function RenderingMemo(props) {

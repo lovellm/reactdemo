@@ -1,14 +1,8 @@
 import React, {
   useEffect, useState, useMemo, useReducer,
 } from 'react';
-import PropTypes from 'prop-types';
 import RenderCounter from './RenderCounter';
 import { fakeDataProcess, fakeDataProcessAsync } from './fakeDataProcess';
-
-const propTypes = {
-  counter:         PropTypes.number.isRequired,
-  increaseCounter: PropTypes.func.isRequired,
-};
 
 // Simple Boolean Toggle Reducer
 const toggleReducer = (state) => !state;
@@ -24,11 +18,17 @@ const speeds = [
   0, 100, 500, 1000, 2000,
 ];
 
+const renderFakeData = (data) => (
+  <div style={{ marginBottom: '1rem', fontSize: '150%' }}>
+    Fake Data: {data}
+  </div>
+);
+
 function AsDirect(props) {
   const data = fakeDataProcess(props.speed);
   return (
     <div>
-      Fake Data: {data}
+      {renderFakeData(data)}
       <RenderCounter />
     </div>
   );
@@ -42,7 +42,7 @@ function AsEffect(props) {
   
   return (
     <div>
-      Fake Data: {data}
+      {renderFakeData(data)}
       <RenderCounter />
     </div>
   );
@@ -56,7 +56,7 @@ function AsMemo(props) {
   
   return (
     <div>
-      Fake Data: {data}
+      {renderFakeData(data)}
       <RenderCounter />
     </div>
   );
@@ -70,7 +70,7 @@ function AsEffectAsync(props) {
   
   return (
     <div>
-      Fake Data: {data}
+      {renderFakeData(data)}
       <RenderCounter />
     </div>
   );
@@ -144,5 +144,3 @@ export default function EffectMemo() {
     </div>
   );
 }
-
-EffectMemo.propTypes = propTypes;

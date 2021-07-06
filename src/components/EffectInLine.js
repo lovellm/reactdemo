@@ -4,8 +4,7 @@ import RenderCounter from './RenderCounter';
 import SlowComponent from './SlowComponent';
 
 const propTypes = {
-  counter:         PropTypes.number.isRequired,
-  increaseCounter: PropTypes.func.isRequired,
+  counter: PropTypes.number.isRequired,
 };
 
 const options = [
@@ -105,8 +104,8 @@ export default function EffectInLine(props) {
           </div>
         </div>
       </div>
-      {currentOption === 'effect' && <AsEffect {...props} speed={currentSpeed} />}
-      {currentOption === 'direct' && <AsInLine {...props} speed={currentSpeed} />}
+      {currentOption === 'effect' && <AsEffect counter={props.counter} speed={currentSpeed} />}
+      {currentOption === 'direct' && <AsInLine counter={props.counter} speed={currentSpeed} />}
     </div>
   );
 }

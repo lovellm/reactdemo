@@ -40,13 +40,13 @@ function App() {
       </div>
 
       {currentTab === 'basicRendering' && (
-        <RenderingMemo counter={counter} increaseCounter={increaseCounter} />
+        <RenderingMemo counter={counter} />
       )}
       {currentTab === 'effectOrNot' && (
-        <EffectInLine counter={counter} increaseCounter={increaseCounter}  />
+        <EffectInLine counter={counter} />
       )}
       {currentTab === 'effectMemo' && (
-        <EffectMemo counter={counter} increaseCounter={increaseCounter}  />
+        <EffectMemo />
       )}
       {currentTab === 'objectEquality' && (
         <ObjectEquality />
