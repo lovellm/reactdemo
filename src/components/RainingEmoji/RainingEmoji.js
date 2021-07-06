@@ -32,12 +32,14 @@ const rainingReducer = (state, ops) => {
     const life = Math.floor(Math.random() * 15) + 3;
     const speed = Math.floor(Math.random() * 4) + 1;
     const left = Math.floor(Math.random() * 90) + 5;
+    const reverse = Math.random() > 0.67;
     nextState.push({
       expires: now + (life * 1000),
       component: (
         <RandomEmoji fall spin
           life={life} speed={speed} key={now}
           top={0} left={left + 'vw'}
+          reverse={reverse}
         />
       ),
     });

@@ -9,6 +9,7 @@ const propTypes = {
   top: PropTypes.number,
   speed: PropTypes.number,
   life: PropTypes.number,
+  reverse: PropTypes.bool,
 };
 
 const list = [
@@ -36,9 +37,11 @@ export default function RandomEmoji(props) {
   const [char] = useState(list[Math.floor(Math.random() * list.length)]);
   const size = props.fontSize || 32;
   const absolute = 'top' in props || 'left' in props;
+  const direction = props.reverse ? 'reverse' : 'normal';
   const spin = props.spin ? (
     ('' + (props.speed || 3) + 's')
-    + ' linear 0s infinite normal both running spinning'
+    + ' linear 0s infinite '
+    + direction + ' both running spinning'
   ) : '';
   const fall = props.fall ? (
     ('' + (props.life || 6) + 's')
