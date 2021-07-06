@@ -1,4 +1,5 @@
 import React, { useReducer, useState } from 'react';
+import _ from 'lodash';
 import StateVariableButton from './components/StateVariableButton';
 import RenderingMemo from './components/RenderingMemo';
 import EffectInLine from './components/EffectInLine';
@@ -15,13 +16,13 @@ const tabOptions = [
   { id: 'basicRendering', text: 'App State / Rendering' },
   { id: 'effectOrNot', text: 'useEffect / In-line' },
   { id: 'effectMemo', text: 'useEffect / useMemo' },
-  { id: 'objectEquality', text: 'Prop / State Equality' },
-  { id: 'hookDeps', text: 'Hook Deps' },
+  { id: 'objectEquality', text: 'Prop / State Equality', hideCounter: true },
 ];
 
 function App() {
   const [currentTab, setCurrentTab] = useState(tabOptions[0].id);
   const [counter, increaseCounter] = useReducer(incrementReducer, 0);
+  const currentTabInfo = _.find(tabOptions, { id: currentTab }) || {};
 
   return (
     <div className="App">
@@ -35,9 +36,11 @@ function App() {
         ))}
       </div>
 
-      <div className="container">
-        <StateVariableButton counter={counter} increaseCounter={increaseCounter} />
-      </div>
+      {!currentTabInfo.hideCounter && (
+        <div className="container">
+          <StateVariableButton counter={counter} increaseCounter={increaseCounter} />
+        </div>
+      )}
 
       {currentTab === 'basicRendering' && (
         <RenderingMemo counter={counter} />
@@ -51,8 +54,6 @@ function App() {
       {currentTab === 'objectEquality' && (
         <ObjectEquality />
       )}
-
-
 
       {/* Just for fun.. */}
       <RainingEmoji count={50}/>
